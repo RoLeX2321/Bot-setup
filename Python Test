@@ -1,0 +1,64 @@
+# import Discord Package
+from re import T
+import discord
+from discord import guild
+from discord import message
+from discord.ext import commands
+from discord.ext.commands.core import bot_has_guild_permissions
+
+# Client (our bot)
+client = commands.Bot(command_prefix='--')
+
+
+@client.command(name="version")
+async def version(context):
+     print('here')
+     myEmbed = discord.Embed(title="Current Version", description="The bot is in Version 1.0", color=0x00ff00)
+     myEmbed.add_field(name="Version Code:", value="v1.0.0", inline=False)
+     myEmbed.add_field(name="Date Relased:",value="September 14th, 2021", inline=False)
+     myEmbed.set_footer(text="This is a sample footer")
+     myEmbed.set_author(name="P4r4d0x")
+
+     await context.message.channel.send(embed=myEmbed)
+
+
+@client.event
+async def on_ready():
+     # DO STUFF....
+
+     general_channel = client.get_channel(id of your channel)
+     await general_channel.send('Hello, world!')
+
+     general_channel = client.get_channel(id of channel)
+     await general_channel.send('Whats up?')
+
+@client.command()
+async def goodbye(ctx):
+     await ctx.send("Goodbye,hope you have a good rest of the day")
+
+@client.event
+async def on_disconnect():
+     general_channel = client.get_channel(id of channel)
+     await general_channel.send('GoodBye!')
+
+
+@client.event
+async def on_message(message):
+
+    if message.content == '/informacije':
+        general_channel = client.get_channel(your id of channel)
+
+        myEmbed = discord.Embed(title="Current Version", description="The bot is in Version 1.0", color=0x00ff00)
+        myEmbed.add_field(name="Version Code:", value="v1.0.0", inline=False)
+        myEmbed.add_field(name="Date Relased:",value="September 14th, 2021", inline=False)
+        myEmbed.set_footer(text="This is a sample footer")
+        myEmbed.set_author(name="P4r4d0x")
+
+        await general_channel.send(embed=myEmbed)
+
+        await client.process_commands(message)
+
+
+# Run the client on the server
+client.run('Your token')
+
